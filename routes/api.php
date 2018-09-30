@@ -18,5 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/getMessages','TelegramBot@getUnhandledMessages');
-Route::post('/sendMessage','TelegramBot@sendMessage');
+Route::get('/fire','TelegramBot@fire');
