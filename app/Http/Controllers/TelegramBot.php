@@ -9,8 +9,6 @@ use App\User;
 
 class TelegramBot extends Controller
 {
-    
-    
     public function getUnhandledMessages(){
         
         $latestOffset = Message::orderBy('created_at', 'desc')->first()->update_id;
@@ -32,7 +30,6 @@ class TelegramBot extends Controller
                 $username = $message['message']['from']['username'];
             else
                 $username = null;
-            
             
             $fields = [ 'user_id' => $user_id, 'first_name' => $first_name,
             'username' => $username ];
@@ -92,12 +89,10 @@ class TelegramBot extends Controller
             'text' => $message['classification'],
             'reply_to_message_id' => $message['message_id']
             ]);
-            
             //update database
             $record = Message::find($message['update_id']);
             $record->handled = 1;
             $record->save();
-            
         }
     }
     
